@@ -31,7 +31,7 @@ class SecretaryAirin(object):
     """
     SecretaryAirin help summary page
 
-    SecretaryAirin is a ip address resolver tool
+    SecretaryAirin is a ip address statistics tool
 
     Example:
         python3 airin.py www.example.com - run
@@ -48,7 +48,7 @@ class SecretaryAirin(object):
 
     def __init__(self, *args: tuple, fmt: str = None, path: str = None, **kwargs: dict):
         """
-        :param tuple    *args    :   One or more IP/CIDR or File path of .txt
+        :param tuple    *args    :   One or more IP/CIDR/DOMAIN/URL or File path of .txt
         :param str      fmt      :   Result format (default csv)
         :param str      path     :   Result path (default None, automatically generated)
         """

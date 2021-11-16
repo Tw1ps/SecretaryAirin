@@ -9,7 +9,7 @@ from config.log import logger
 # 生成json结果文件
 def json_report(data: list, path: str, encode: str = "utf-8") -> str:
     filename = (
-        f'all_cidr_result_{time.strftime("%Y%m%d_%H%M%S", time.localtime())}.json'
+        f'all_statistics_result_{time.strftime("%Y%m%d_%H%M%S", time.localtime())}.json'
     )
     result_json = f"{path}/{filename}"
     with open(result_json, mode="w", encoding=encode) as json_file:
@@ -19,7 +19,7 @@ def json_report(data: list, path: str, encode: str = "utf-8") -> str:
 
 # 生成csv结果文件
 def csv_report(data: list, path: str, encode: str = "utf-8") -> str:
-    filename = f'all_cidr_result_{time.strftime("%Y%m%d_%H%M%S", time.localtime())}.csv'
+    filename = f'all_statistics_result_{time.strftime("%Y%m%d_%H%M%S", time.localtime())}.csv'
     result_csv = f"{path}/{filename}"
     field = [
         "cidr",
