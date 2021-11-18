@@ -34,11 +34,11 @@ class SecretaryAirin(object):
     SecretaryAirin is a ip address statistics tool
 
     Example:
-        python3 airin.py www.example.com - run
-        python3 airin.py ./domains.txt - run
-        python3 airin.py 192.168.0.0/24 - run
-        python3 airin.py ./list.txt --path . - run
-        python3 airin.py ./list.txt --fmt json - run
+        python3 secretaryairin.py www.example.com - run
+        python3 secretaryairin.py ./domains.txt - run
+        python3 secretaryairin.py 192.168.0.0/24 - run
+        python3 secretaryairin.py ./list.txt --path . - run
+        python3 secretaryairin.py ./list.txt --fmt json - run
 
     Note:
         " - run" is a fixed format
@@ -57,6 +57,7 @@ class SecretaryAirin(object):
         self.fmt = fmt
         self.path = path
         self.datas = list()
+        self.statistics_data = list()
         self.__str_list = list()
 
     def config_param(self):
@@ -78,7 +79,7 @@ class SecretaryAirin(object):
 
     def load_data(self):
         """
-        Load file data
+        Load data
         """
         logger.log("DEBUG", f"Arguments: {self.args}")
         for itm in self.args:
@@ -96,10 +97,16 @@ class SecretaryAirin(object):
         datas = cinfo.search(datas)
 
         datas = analyzer.data_sort(datas)
-        analyzer.data_statistics(datas)
+        self.statistics_data = analyzer.data_statistics(datas)
         self.datas = analyzer.data_conversion(datas)
 
-        export.entrance(self.datas, self.path, self.fmt)
+        kwargs = dict()
+        kwargs["data"] = {"sort": self.statistics_data, "detail": self.datas}
+        kwargs["fmt"] = self.fmt
+        kwargs["path"] = self.path
+        kwargs.update(self.kwargs)
+        ep = export.Exporter(**kwargs)
+        ep.run()
 
         return self.datas
 

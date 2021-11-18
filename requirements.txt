@@ -2,3 +2,5 @@ fire==0.4.0
 aiodns==3.0.0
 ruamel.yaml==0.17.17
 loguru==0.5.3
+pandas==1.2.0
+openpyxl==3.0.9

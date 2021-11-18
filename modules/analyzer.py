@@ -38,7 +38,8 @@ def data_sort(data: dict, reverse: bool = True) -> dict:
     return data
 
 
-def data_statistics(data: dict) -> None:
+def data_statistics(data: dict) -> List[dict]:
+    results = list()
     ipcount = 0
     for itm in data:
         ip_list = data.get(itm)
@@ -48,10 +49,19 @@ def data_statistics(data: dict) -> None:
             "INFOR",
             f"CIDR: {itm}  \tIP count: {len(ip_list)}\tLocaltion: {info.get('localtion')}\tISP: {info.get('isp')}\tCDN: {info.get('cdn')}",
         )
+        results.append(
+            {
+                "cidr": itm,
+                "ip count": len(ip_list),
+                "localtion": info.get("localtion"),
+                "isp": info.get("isp"),
+                'cdn': info.get("cdn"),
+            }
+        )
         ipcount += len(ip_list)
 
     logger.log("ALERT", f"CIDR total: {len(data)} \tIP total: {ipcount}")
-    logger.log("TRACE", f"Data: {data}")
+    return results
 
 
 def data_conversion(datas: dict) -> list:

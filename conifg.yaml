@@ -1,3 +1,6 @@
 async_semaphore: 50 # DNS 请求并发数
-result_save_format: "csv" # 结果生成格式，csv/json
+
+result_save_format: "xlsx" # 结果生成格式，xlsx/csv/json
 result_save_encode: "utf-8" # 结果生成编码
+results_save_with_index: False # 生成结果包括序号
+results_save_with_header: True # 生成结果包括字段名
